@@ -280,9 +280,6 @@ class Query(Select):
     def __getstate__(self):
         return self.run()
 
-    def __getitem__(self, pos):
-        return self.run()
-
     def __iter__(self):
         return iter(self.run())
 
