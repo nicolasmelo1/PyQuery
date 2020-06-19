@@ -29,8 +29,12 @@ class BaseQuery:
         if type(value) == tuple:
             value = '{}'.format(', '.join([str(self.format_db_values(val)) for val in value]))
 
+        if type(value) == self.__class__:
+            value = self.format_db_values(list(value))
+
         if value == None:
             value = 'NULL'
+            
         return value
 
 class Select(BaseQuery):
@@ -270,6 +274,23 @@ class Query(Select):
         self.join_relations = dict()
         super(Query, self).__init__(*args, **kwargs)
 
+    def __repr__(self):
+        return str(self.run())
+
+    def __getstate__(self):
+        return self.run()
+
+    def __getitem__(self, pos):
+        return self.run()
+
+    def __iter__(self):
+        return iter(self.run())
+
+    def __bool__(self):
+        return bool(self.run())
+
+    def __getitem__(self, k):
+        return self.run()[k]
 
     @property
     def columns(self):
@@ -288,5 +309,3 @@ class Query(Select):
         column_names = [description[0] for description in cursor.description]
         self.engine.close()
         return column_names
-
-   

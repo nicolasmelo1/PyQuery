@@ -38,7 +38,7 @@ class Postgres(Engine):
         super(Postgres, self).__init__()
 
     def connect(self):
-        self.validate_not_connected()
+        #self.validate_not_connected()
 
         self.connection = psycopg2.connect(
             port=self.port,

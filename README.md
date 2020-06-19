@@ -14,6 +14,6 @@ connection = Connect(
     user='db_user', 
     password='db_password'
 )
-results = connection.query('example').select('id', flat=True).first().run()
+results = connection.query('example').select('id', flat=True).first()
 ```
 
