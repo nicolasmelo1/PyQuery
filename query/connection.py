@@ -4,7 +4,7 @@ from .query import Query
 
 
 class Connect:
-    def __init__(self, engine, **kwargs):
+    def __init__(self, engine, join_relations=dict(), **kwargs):
         """
         Connects to a engine so the user can make queryies
 
@@ -20,6 +20,9 @@ class Connect:
         except TypeError as te:
             arguments = str(te).replace('__init__() missing 5 required positional arguments: ', '')
             raise TypeError('The following arguments are required for a new connection: {}'.format(arguments))
+        self.join_relations = join_relations 
 
-    def query(self, on_table):
-        return Query(on_table=on_table, engine=self.__engine)
+    def query(self, on_table, join_relations=dict()):
+        if not join_relations:
+            join_relations = self.join_relations
+        return Query(on_table=on_table, engine=self.__engine, join_relations=join_relations)

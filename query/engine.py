@@ -67,10 +67,13 @@ class Postgres(Engine):
         self.close()
         return result
     
+    def commit(self):
+        self.validate_connected()
+        self.connection.commit()
+        self.close()
+        return True
+
     def save(self, query):
         self.connect()
         self.execute(query)
-        self.connection.commit()
-        self.close()
-
-        return True
+        return self.commit()

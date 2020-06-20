@@ -11,13 +11,19 @@ WHERE_SPECIAL_ARGUMENTS = {
 
 AUTOMATIC_JOINS_PLACEHOLDER = '__'
 
-FIELD_FORMAT = '"{table}"."{field}"'
+
+FIELD_OR_TABLES_FORMAT = '"{}"'
+
+FIELD_FORMAT = '{table}.{field}'
 
 # Select clause config
-SELECT_FORMAT = 'SELECT {select} FROM "{froms}" '
+SELECT_FORMAT = 'SELECT {distinct}{select} FROM "{froms}" '
+
+# Distinct
+DISTINCT_CLAUSE_FORMAT = 'DISTINCT '
 
 # Joins Config
-JOIN_CLAUSE_FORMAT = 'INNER JOIN "{to_table_join}" ON ("{from_table_join}"."{join}_id" = "{to_table_join}"."id")'
+JOIN_CLAUSE_FORMAT = 'INNER JOIN {to_table_join} {alias} ON ({from_table_join}."{join}_id" = {to_table_join_name_or_alias}."id")'
 
 # Where clause config
 WHERE_CLAUSE_FORMAT = 'WHERE {where_conditions} '
@@ -36,3 +42,6 @@ VALUE_STRING_FORMAT = "'{}'"
 VALUE_LIST_FORMAT = '({})'
 VALUE_TUPLE_FORMAT = '{}'
 VALUE_NULL_FORMAT = 'NULL'
+
+VALUE_SINGLE_QUOTE_FORMAT = "''"
+VALUE_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
