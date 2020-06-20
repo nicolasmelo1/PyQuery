@@ -146,7 +146,6 @@ class BaseQuery:
             field=self._format_field_or_tables(values_to_use[-1])
         )
     
-        
         return value
 
     def format_db_values(self, value):
@@ -169,6 +168,7 @@ class BaseQuery:
             value = VALUE_NULL_FORMAT
             
         return value
+
 
 class Insert(BaseQuery):
     def bulk_insert(self, values, column_names=None):
@@ -212,7 +212,6 @@ class Insert(BaseQuery):
         #self.engine.save(query)
         return True
 
-
     def _format_insert(self, values, columns):
         INSERT_CLAUSE = 'INSERT INTO "{}" ({}) VALUES {}'
         return INSERT_CLAUSE.format(
@@ -255,7 +254,6 @@ class Select(BaseQuery):
     @property
     def query(self):
         return self.__get_query
-
 
     def first(self):
         """

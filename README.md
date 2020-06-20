@@ -101,7 +101,7 @@ WHERE "form"."id" = 2
 
 Look that the second join, correctly references to `form` table, so we don't need to set any join relation for this field. But on on the `form` field in `form_value` table actually referes to `dynamic_forms` and not `form`.
 
-Since your relations will probably never crash (only if you have the fame column name for a table and the same table) you are safe defining it directly in the connection.
+Since your relations will probably never crash (only if you have the same column name for a table and the same table) you are safe defining it directly in the connection.
 
 ### To clarify
 
@@ -112,7 +112,7 @@ In this case we would do something like the following:
 join_relations = {
     "form_value": {
         "form": "dynamic_forms"
-    }
+    },
     "dynamic_forms": {
         "form": "foo"
     }
