@@ -244,7 +244,7 @@ class Select(BaseQuery):
         )
         
         joins = '{} '.format(' '.join(self.query_joins)) if self.query_joins else ''
-        where = WHERE_CLAUSE_FORMAT.format(where_conditions=WHERE_EQUAL_OPERATION_FORMAT.join(self.query_where)) if self.query_where else ''
+        where = WHERE_CLAUSE_FORMAT.format(where_conditions=WHERE_AND_CONNECTOR_FORMAT.join(self.query_where)) if self.query_where else ''
         orders = ORDER_BY_CLAUSE_FORMAT.format(order_by_conditions=', '.join(self.query_orders)) if self.query_orders else ''
         limit = self.query_limit
 
