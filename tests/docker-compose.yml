@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  postgres:
+    tty: true
+    image: postgres
+    environment: 
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+  app:
+    tty: true
+    build: .
+    command: python3 tests.py
+    volumes: 
+      - .:/code
